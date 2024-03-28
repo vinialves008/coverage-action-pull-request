@@ -1,18 +1,17 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Coverage Action Comments'
+description: 'Coverage Action Comments on the Pull requests'
+author: 'vinialves008'
 
 # Define your inputs here.
 inputs:
-  milliseconds:
+  GITHUB_TOKEN:
     description: 'Your input description here'
     required: true
-    default: '1000'
 
 # Define your outputs here.
 outputs:
   time:
-    description: 'Your output description here'
+    description: 'Test coverage'
 
 runs:
   using: node20
