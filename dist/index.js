@@ -28979,16 +28979,12 @@ async function coverage(octokit, context) {
   const { pull_request } = context.payload
 
   const body = `
-    <h1> Teste Coverage </h1>
-    <p> Romero Brito </p>
+    Teste Coverage \nRomero Brito
   `
 
   await octokit.rest.issues.createComment({
     ...context.repo,
     issue_number: pull_request.number,
-    mediaType: {
-      format: 'html'
-    },
     body
   })
   return true

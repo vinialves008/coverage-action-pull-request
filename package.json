@@ -1,7 +1,7 @@
 {
   "name": "coverage-action-pull-request",
   "description": "GitHub Actions coverage action for pull requests",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "",
   "private": true,
   "homepage": "https://github.com/vinialves008/coverage-action-pull-request/blob/main/README.md",
