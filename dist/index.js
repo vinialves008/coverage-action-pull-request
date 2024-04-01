@@ -28983,7 +28983,7 @@ async function coverage(octokit, context) {
     ### Romero Brito
   `
 
-  await octokit.issues.createComment({
+  await octokit.rest.issues.createComment({
     ...context.repo,
     issue_number: pull_request.number,
     body
