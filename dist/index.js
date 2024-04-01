@@ -28986,6 +28986,9 @@ async function coverage(octokit, context) {
   await octokit.rest.issues.createComment({
     ...context.repo,
     issue_number: pull_request.number,
+    mediaType: {
+      format: 'html'
+    },
     body
   })
   return true
