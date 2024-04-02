@@ -13,11 +13,15 @@ async function coverage(octokit, context, statusCoverage) {
   const { metrics } = statusCoverage.project
   const data = extractMetrics(metrics)
 
-  await octokit.rest.issues.createComment({
-    ...context.repo,
-    issue_number: pull_request.number,
-    body: getBody(pull_request.number, data)
-  })
+  try {
+    await octokit.rest.issues.createComment({
+      ...context.repo,
+      issue_number: pull_request.number,
+      body: getBody(pull_request.number, data)
+    })
+  } catch (error) {
+    throw new Error('Erro ao enviar comentário')
+  }
   return true
 }
 
