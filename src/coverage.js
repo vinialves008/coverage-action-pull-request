@@ -10,8 +10,8 @@ const extractMetrics = ({ statements = 0, coveredstatements = 0 }) => {
 async function coverage(octokit, context, statusCoverage) {
   const { pull_request } = context.payload
 
-  const { metrics } = statusCoverage.project
-  const data = extractMetrics(metrics)
+  const { metrics } = statusCoverage.project[0]
+  const data = extractMetrics(metrics[0].$)
 
   try {
     await octokit.rest.issues.createComment({

@@ -35585,8 +35585,8 @@ const extractMetrics = ({ statements = 0, coveredstatements = 0 }) => {
 async function coverage(octokit, context, statusCoverage) {
   const { pull_request } = context.payload
 
-  const { metrics } = statusCoverage.project
-  const data = extractMetrics(metrics)
+  const { metrics } = statusCoverage.project[0]
+  const data = extractMetrics(metrics[0].$)
 
   try {
     await octokit.rest.issues.createComment({
@@ -35634,7 +35634,7 @@ async function run() {
       .readFileSync(core.getInput('coverage') || './clover.xml')
       .toString()
 
-    const jsonCoverage = xmlToJSON(xmlCoverage)
+    const jsonCoverage = await xmlToJSON(xmlCoverage)
 
     const octokit = getOctokit(GITHUB_TOKEN)
 
@@ -35658,17 +35658,16 @@ module.exports = {
 
 const xml2js = __nccwpck_require__(6189)
 
-const xmlToJSON = xml => {
+const xmlToJSON = async xml => {
   const parser = new xml2js.Parser()
-  parser.parseString(xml, (err, result) => {
-    if (err) console.log(err)
-    console.log(result)
-  })
-  return {
-    coverage: {
-      project: { metrics: { statements: 10, coveredstatements: 10 } }
-    }
-  }
+
+  const xpto = await new Promise((resolve, reject) =>
+    parser.parseString(xml, (err, result) => {
+      if (err) reject(err)
+      resolve(result)
+    })
+  )
+  return xpto
 }
 
 module.exports = xmlToJSON
