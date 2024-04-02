@@ -5,7 +5,10 @@ author: 'vinialves008'
 # Define your inputs here.
 inputs:
   GITHUB_TOKEN:
-    description: 'Your input description here'
+    description: 'GITHUB_TOKEN to access comments in PR'
+    required: true
+  coverage:
+    description: 'coverage report file'
     required: true
 
 # Define your outputs here.
