@@ -24,7 +24,7 @@ async function run() {
       .readFileSync(core.getInput('coverage') || './clover.xml')
       .toString()
 
-    const jsonCoverage = JSON.parse(xmlToJSON(xmlCoverage))
+    const jsonCoverage = await xmlToJSON(xmlCoverage)
 
     const octokit = getOctokit(GITHUB_TOKEN)
 
